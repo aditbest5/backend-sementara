@@ -8,12 +8,21 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         autoIncrement: true,
       },
+      UserId: {
+        type: DataTypes.INTEGER,
+      },
+      StockId: {
+        type: DataTypes.INTEGER,
+      },
+      WarehouseId: {
+        type: DataTypes.INTEGER,
+      },
       notes: {
         type: DataTypes.STRING,
       },
       isApproved: {
         type: DataTypes.BOOLEAN,
-        defaulValue: false,
+        defaulValue: 0,
       },
       createdAt: {
         type: DataTypes.DATE,

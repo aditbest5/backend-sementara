@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         autoIncrement: true,
       },
-      jurnal_name: {
+      name: {
         type: DataTypes.STRING,
       },
       add: {

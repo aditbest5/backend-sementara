@@ -17,6 +17,9 @@ module.exports = (sequelize, DataTypes) => {
       province: {
         type: DataTypes.STRING,
       },
+      geolocation: {
+        type: DataTypes.STRING,
+      },
       createdAt: {
         type: DataTypes.DATE,
       },
@@ -26,6 +29,9 @@ module.exports = (sequelize, DataTypes) => {
     },
     {}
   );
-
+  Address.associate = (models) => {
+    Address.hasMany(models.Profile, { foreignKey: "AddressId" });
+    Address.hasOne(models.Warehouse, { foreignKey: "AddressId" });
+  };
   return Address;
 };

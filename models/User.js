@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       isVerified: {
         type: DataTypes.BOOLEAN,
-        defaultValue: false,
+        defaultValue: 0,
       },
       role: {
         type: DataTypes.STRING,
@@ -38,14 +38,14 @@ module.exports = (sequelize, DataTypes) => {
     {}
   );
 
-  //   User.associate = (models) => {
-  //     User.hasOne(models.Profile, { foreignKey: "userId" });
-  //     User.hasMany(models.Post, { foreignKey: "userId" });
-  //     User.hasMany(models.Comment, { foreignKey: "userId" });
-  //     User.hasMany(models.Post_Like, { foreignKey: "userId" });
-  //     User.hasMany(models.Comment_Like, { foreignKey: "userId" });
-  //     User.hasMany(models.Token, { foreignKey: "userId" });
-  //   };
+  User.associate = (models) => {
+    User.hasOne(models.Profile, { foreignKey: "UserId" });
+    User.hasOne(models.Warehouse, { foreignKey: "UserId" });
+    User.belongsToMany(models.Stock, {
+      through: models.Stock_Mutation,
+      foreignKey: "UserId",
+    });
+  };
 
   return User;
 };

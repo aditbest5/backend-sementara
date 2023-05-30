@@ -17,9 +17,6 @@ module.exports = (sequelize, DataTypes) => {
       desc: {
         type: DataTypes.STRING,
       },
-      price: {
-        type: DataTypes.INTEGER,
-      },
       createdAt: {
         type: DataTypes.DATE,
       },
@@ -29,6 +26,10 @@ module.exports = (sequelize, DataTypes) => {
     },
     {}
   );
+  Product.associate = (models) => {
+    Product.belongsTo(models.Category, { foreignKey: "CategoryId" });
+    Product.hasMany(models.Product_Type, { foreignKey: "ProductId" });
+  };
 
   return Product;
 };

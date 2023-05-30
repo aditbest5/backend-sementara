@@ -8,6 +8,12 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         autoIncrement: true,
       },
+      WarehouseId: {
+        type: DataTypes.INTEGER,
+      },
+      StockId: {
+        type: DataTypes.INTEGER,
+      },
       remarks: {
         type: DataTypes.STRING,
       },
@@ -29,6 +35,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     {}
   );
-
+  Stock_Jurnal.associate = (models) => {
+    Stock_Jurnal.belongsTo(models.Tipe_Jurnal, { foreignKey: "TipeJurnalId" });
+  };
   return Stock_Jurnal;
 };

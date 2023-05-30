@@ -11,6 +11,12 @@ module.exports = (sequelize, DataTypes) => {
       stock: {
         type: DataTypes.INTEGER,
       },
+      WarehouseId: {
+        type: DataTypes.INTEGER,
+      },
+      ProductTypeId: {
+        type: DataTypes.INTEGER,
+      },
       createdAt: {
         type: DataTypes.DATE,
       },
@@ -20,6 +26,12 @@ module.exports = (sequelize, DataTypes) => {
     },
     {}
   );
-
+  Stock.associate = (models) => {
+    Stock.hasMany(models.Checkout_Item, { foreignKey: "StockId" });
+    Stock.belongsToMany(models.Cart, {
+      through: models.Cart_Item,
+      foreignKey: "StockId",
+    });
+  };
   return Stock;
 };

@@ -23,6 +23,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     {}
   );
-
+  Profile.associate = (models) => {
+    Profile.hasMany(models.Cart, { foreignKey: "ProfileId" });
+  };
   return Profile;
 };

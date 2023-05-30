@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
-  const Checkout_Item = sequelize.define(
-    "Checkout_Item",
+  const Checkout = sequelize.define(
+    "Checkout",
     {
       id: {
         type: DataTypes.INTEGER,
@@ -28,6 +28,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       isCompleted: {
         type: DataTypes.BOOLEAN,
+        defaultValue: 0,
       },
       expiredTime: {
         type: DataTypes.DATE,
@@ -41,6 +42,9 @@ module.exports = (sequelize, DataTypes) => {
     },
     {}
   );
+  Checkout.associate = (models) => {
+    Checkout.belongsTo(models.Checkout_Item, { foreignKey: "CheckoutItemId" });
+  };
 
-  return Checkout_Item;
+  return Checkout;
 };
